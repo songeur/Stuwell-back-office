@@ -1,0 +1,47 @@
+﻿<h1 *ngIf="isAddMode">Ajouter Utilisateurs</h1>
+<h1 *ngIf="!isAddMode">Modifier Utilisateurs</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="user_firstname">Prénom</label>
+            <input type="text" formControlName="user_firstname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.user_firstname.errors }" />
+            <div *ngIf="submitted && f.user_firstname.errors" class="invalid-feedback">
+                <div *ngIf="f.user_firstname.errors.required">Prénom Obligatoire</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="user_lastname">Nom</label>
+            <input type="text" formControlName="user_lastname" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.user_lastname.errors }" />
+            <div *ngIf="submitted && f.user_lastname.errors" class="invalid-feedback">
+                <div *ngIf="f.user_lastname.errors.required">Nom Obligatoire</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col">
+            <label for="user_login">Nom d'utilisateur</label>
+            <input type="text" formControlName="user_login" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.user_login.errors }" />
+            <div *ngIf="submitted && f.user_login.errors" class="invalid-feedback">
+                <div *ngIf="f.user_login.errors.required">Nom d'utilisateur Obligatoire</div>
+            </div>
+        </div>
+        <div class="form-group col">
+            <label for="user_pass">
+                Mot de passe
+                <em *ngIf="!isAddMode">(Laisser tel quel si même mot de passe)</em>
+            </label>
+            <input type="password" formControlName="user_pass" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.user_pass.errors }" />
+            <div *ngIf="submitted && f.user_pass.errors" class="invalid-feedback">
+                <div *ngIf="f.user_pass.errors.required">Mot de passe Obligatoire</div>
+                <div *ngIf="f.user_pass.errors.minlength">Mot de passe doit avoir au moins 6 charactères</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Sauvegarder
+        </button>
+        <a routerLink="/users" class="btn btn-link">Annuler</a>
+    </div>
+</form>

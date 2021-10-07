@@ -1,0 +1,10 @@
+<form [formGroup]="sousRubriqueForm" (ngSubmit)="onFormSubmit()" style="text-align: center; padding-top: 1%;">
+    <h1>Création d'une nouvelle sous rubrique</h1>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Sous-rubrique</mat-label>
+            <input matInput formControlName="sRubrique">
+        </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary">Sauvegarder</button>
+</form>

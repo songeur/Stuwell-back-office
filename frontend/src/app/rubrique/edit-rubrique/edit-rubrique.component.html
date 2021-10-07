@@ -1,0 +1,43 @@
+<form fxLayout="column" fxLayoutAlign="space-around" [formGroup]="rubriqueForm" (ngSubmit)="onFormSubmit()">
+    <h1 style="text-align: center;">Création d'article</h1>
+    <div fxLayout="row" fxLayoutAlign="space-around">
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Rubrique</mat-label>
+                <mat-select formControlName="rubrique">
+                    <mat-option *ngFor="let rub of rubriqueList" [value]="rub">
+                        {{rub}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Pays</mat-label>
+                <mat-select formControlName="pays">
+                    <mat-option *ngFor="let pays of countryList" [value]="pays">
+                        {{pays}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Sous-rubriques</mat-label>
+                <mat-select formControlName="sRubrique">
+                    <mat-option *ngFor="let srb of sRubrique$ | async" [value]="srb.name">
+                        {{srb.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div>
+        <angular-editor [placeholder]="'Veuillez saisir une rubrique '" [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="htmlContent" [config]="editorConfig">
+        </angular-editor>
+    </div>
+    <div style="text-align: center; padding-top: 1%;">
+        <button mat-raised-button color="primary"> Sauvegarder </button>
+    </div>
+</form>

@@ -1,0 +1,49 @@
+<div fxLayout="column" fxLayoutAlign="space-around">
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 5%">Index</th>
+                    <th style="width: 20%">Rubrique</th>
+                    <th style="width: 20%">Sous rubrique</th>
+                    <th style="width: 20%">Pays</th>
+                    <th style="width: 30%">Article</th>
+                    <th style="width: 5%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let rubrique of rubriques; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{rubrique.name}}</td>
+                    <td>{{rubrique.sRubrique}}</td>
+                    <td>{{rubrique.pays}}</td>
+                    <td [innerHtml]="rubrique.data | safeHtml"></td>
+                    <td style="white-space: nowrap">
+                        <a routerLink="edit/{{rubrique._id}}" class="btn btn-sm btn-primary mr-1">Modifier</a>
+                        <button (click)="deleteTemoignage(rubrique._id)" class="btn btn-sm btn-danger btn-delete-user">
+                            Supprimer
+                            <span *ngIf="!isDeleting" class="spinner-border spinner-border-sm"></span>
+                            <!-- <span *ngIf="isDeleting">Supprimer</span> -->
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="!rubriques">
+                    <td colspan="4" class="text-center">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around">
+        <div>
+            <button mat-raised-button color="accent" [routerLink]="['create-sous-rubrique']">Créer sous rubriques
+            </button>
+        </div>
+        <div>
+            <button mat-raised-button color="primary" [routerLink]="['create']">
+                Créer des rubriques
+            </button>
+        </div>
+    </div>
+</div>

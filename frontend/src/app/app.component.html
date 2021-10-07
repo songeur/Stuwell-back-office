@@ -1,0 +1,18 @@
+﻿<!-- nav -->
+<nav class="navbar navbar-expand navbar-light" style="background-color: #e3f2fd;" *ngIf="user">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}">Acceuil</a>
+        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Gestion des utlisateurs</a>
+        <a class="nav-item nav-link" routerLink="/rubrique" routerLinkActive="active">Gestion des rubriques</a>
+        <a class="nav-item nav-link" routerLink="/acteur" routerLinkActive="active">Gestion des acteurs</a>
+        <a class="nav-item nav-link" routerLink="/temoignage" routerLinkActive="active">Gestion des témoignages</a>
+        <a class="nav-item nav-link" (click)="logout()">Déconnexion</a>
+    </div>
+</nav>
+
+<!-- main app container -->
+<div class="app-container" [ngClass]="{ 'bg-light': user }">
+    <alert></alert>
+    <router-outlet></router-outlet>
+</div>

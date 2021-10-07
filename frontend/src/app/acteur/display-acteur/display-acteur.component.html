@@ -1,0 +1,36 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 20%">Index</th>
+            <th style="width: 40%">Article</th>
+            <th style="width: 20%">Pays</th>
+            <th style="width: 10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let acteur of acteurs; let i = index">
+            <td>{{i+1}}</td>
+            <td [innerHtml]="acteur.data | safeHtml"></td>
+            <td> {{acteur.pays}}</td>
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{acteur._id}}" class="btn btn-sm btn-primary mr-1">Modifier</a>
+                <button (click)="deleteTemoignage(acteur._id)" class="btn btn-sm btn-danger btn-delete-user">
+                    Supprimer
+                    <span *ngIf="!isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <!-- <span *ngIf="isDeleting">Supprimer</span> -->
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!acteurs">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div style="text-align: center; padding-top: 1%;">
+    <button mat-raised-button color="primary" [routerLink]="['create']">
+        Créer des acteurs
+        &nbsp;
+    </button>
+</div>

@@ -1,0 +1,11 @@
+<form fxLayout="column" fxLayoutAlign="space-around" (ngSubmit)="onFormSubmit()">
+    <h1 style="text-align: center;">Création d'article pour un témoignage</h1>
+    <div>
+        <angular-editor [placeholder]="'Veuillez saisir un témoignage '" [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="htmlContent" [config]="editorConfig">
+        </angular-editor>
+    </div>
+    <div style="text-align: center; padding-top: 1%;">
+        <button mat-raised-button color="primary"> Sauvegarder </button>
+    </div>
+</form>

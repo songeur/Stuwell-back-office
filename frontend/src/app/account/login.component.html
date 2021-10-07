@@ -1,0 +1,28 @@
+﻿<div class="card">
+    <h4 class="card-header">Authentification</h4>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="user_login">Nom d'utilisateur</label>
+                <input type="text" formControlName="user_login" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.user_login.errors }" />
+                <div *ngIf="submitted && f.user_login.errors" class="invalid-feedback">
+                    <div *ngIf="f.user_login.errors.required">Le nom d'utilisateur est obligatoire</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user_pass">Mot de passe</label>
+                <input type="password" formControlName="user_pass" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.user_pass.errors }" />
+                <div *ngIf="submitted && f.user_pass.errors" class="invalid-feedback">
+                    <div *ngIf="f.user_pass.errors.required">Le mot de passe est obligatoire</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    S'authentifier
+                </button>
+                <a routerLink="../register" class="btn btn-link">S'enregistrer</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<form fxLayout="column" fxLayoutAlign="space-around" [formGroup]="acteurForm" (ngSubmit)="onFormSubmit()">
+    <h1 style="text-align: center;">Création d'article pour les acteurs</h1>
+    <div fxLayout="row" fxLayoutAlign="space-around">
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Pays</mat-label>
+                <mat-select formControlName="pays">
+                    <mat-option *ngFor="let pays of countryList" [value]="pays">
+                        {{pays}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <div>
+        <angular-editor [placeholder]="'Veuillez saisir un acteur '" [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="htmlContent" [config]="editorConfig">
+        </angular-editor>
+    </div>
+    <div style="text-align: center; padding-top: 1%;">
+        <button mat-raised-button color="primary"> Sauvegarder </button>
+    </div>
+</form>
